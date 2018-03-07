@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-const title = 'My Minimal React Webpk Bbel Se';
+const title = 'Course Wrap';
 
 ReactDOM.render(
-    <div>{title}</div>,
+    <h1>{title}</h1>,
     document.getElementById('app')
   );
 
