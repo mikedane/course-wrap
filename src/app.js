@@ -43,7 +43,7 @@ export class SubjectGrid extends React.Component {
 
     componentDidMount(){
         this.state.schools.forEach((school, index) => {
-            axios.get('https://us-central1-test-api-197100.cloudfunctions.net/ocwScraper/' + school.name.toLowerCase()).then((response) => {
+            axios.get('https://us-central1-test-api-197100.cloudfunctions.net/ocwScraper/data/' + school.name.toLowerCase()).then((response) => {
                 let tempSchools = this.state.schools;
                 tempSchools[index].subjects = response.data.subjects;
                 this.setState({
@@ -90,7 +90,6 @@ export class SubjectGrid extends React.Component {
     }
 }
 
-
 export class SubjectHighlight extends React.Component {
     constructor(props){
         super(props);
@@ -101,7 +100,7 @@ export class SubjectHighlight extends React.Component {
     }
 
     componentWillMount(){
-        axios.get('https://us-central1-test-api-197100.cloudfunctions.net/ocwScraper/' + this.props.match.params.school + '/' + this.props.match.params.subject)
+        axios.get('https://us-central1-test-api-197100.cloudfunctions.net/ocwScraper/data/' + this.props.match.params.school + '/' + this.props.match.params.subject)
             .then((response) => {
                 this.setState({
                     courses: response.data.courses
@@ -157,5 +156,15 @@ export class SubjectHighlight extends React.Component {
                 {this.generateCourseItems(this.state.courses)}
             </div>
         );
+    }
+}
+
+export class SearchBar extends React.Component {
+    constructor(props){
+        super(props);
+
+        this.state = {
+            searchQuery: ""
+        }
     }
 }
