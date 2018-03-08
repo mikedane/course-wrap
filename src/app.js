@@ -109,9 +109,26 @@ export class SubjectHighlight extends React.Component {
             });
     }
 
+    removeDuplicateCourses(courses){
+        let result = [];
+        courses.forEach((course) => {
+            if(result.length > 0){
+                let found = result.find(function(element) {
+                    return element.name == course.name;
+                  });
+                if(found === undefined){
+                    result.push(course);
+                }
+            } else {
+                result.push(course);
+            }
+            
+        });            
+        return result;
+    }
+
     generateCourseItems(courses){
-        console.log(courses);
-        return courses.map((course, index) => {
+        return this.removeDuplicateCourses(courses).map((course, index) => {
             return (
                 <a href={course.url} key={course.name + index.toString()} target="_blank">
                     <li style={{display: "inline-block", verticalAlign : "top", margin: "50px", width: "250px", height: "500px", overflow: "scroll", border: "1px solid black"}}>
