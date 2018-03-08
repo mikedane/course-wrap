@@ -114,7 +114,7 @@ export class SubjectHighlight extends React.Component {
         courses.forEach((course) => {
             if(result.length > 0){
                 let found = result.find(function(element) {
-                    return element.name == course.name;
+                    return element.name == course.name || element.url == course.url;
                   });
                 if(found === undefined){
                     result.push(course);
