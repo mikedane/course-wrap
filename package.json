@@ -1,11 +1,11 @@
 {
-  "name": "ocw-wrapper",
+  "name": "course-wrap",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --config ./webpack.config.js --mode development",
-    "push-to-git": "_helpers/push_to_git.sh 'added git upload script'"
+    "push-to-git": "_helpers/push_to_git.sh 'wired up basic site structure'"
   },
   "keywords": [],
   "author": "Mike Dane",
@@ -22,7 +22,9 @@
     "webpack-dev-server": "^3.1.0"
   },
   "dependencies": {
+    "axios": "^0.18.0",
     "react": "^16.2.0",
-    "react-dom": "^16.2.0"
+    "react-dom": "^16.2.0",
+    "react-router-dom": "^4.2.2"
   }
 }

@@ -1,10 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import App from './app.js'
 
 const title = 'Course Wrap';
 
 ReactDOM.render(
-    <h1>{title}</h1>,
+    <App name="Dog"/>,
     document.getElementById('app')
   );
 
