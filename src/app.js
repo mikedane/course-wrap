@@ -230,7 +230,7 @@ export class SearchBar extends React.Component {
                 searchResults: [],
                 searching: false,
                 shouldRedirect: true,
-                redirectUrl: '/search-results?searchQuery=' + e.target.value.trim().replace(/ /g, "%20")
+                redirectUrl: '/search-results?searchQuery=' + e.target.value.trim().replace(/&/g, "").replace(/\+{2,}/g, "").replace(/\s{2,}/g, " ").replace(/ /g, "+")
             });
         
         }
@@ -271,7 +271,7 @@ export class SearchResults extends React.Component {
         super(props);
 
         this.state = {
-            searchQuery: this.getParameterByName("searchQuery").split("%20").join(" "),
+            searchQuery: this.getParameterByName("searchQuery").split("+").join(" "),
             searchResults: [],
             
         }
@@ -285,9 +285,9 @@ export class SearchResults extends React.Component {
     componentDidUpdate(){
         if(this.getParameterByName("searchQuery").split("%20").join(" ") != this.state.searchQuery){
             this.setState({
-                searchQuery: this.getParameterByName("searchQuery").split("%20").join(" ")
+                searchQuery: this.getParameterByName("searchQuery").split("+").join(" ")
             });
-            this.getSearchResults(this.getParameterByName("searchQuery").split("%20").join(" "));
+            this.getSearchResults(this.getParameterByName("searchQuery").split("+").join(" "));
         }
     }
 
