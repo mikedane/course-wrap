@@ -5,7 +5,6 @@ import Header from './components/Header.js';
 import SubjectGrid from './components/SubjectGrid.js';
 import SubjectHighlight from './components/SubjectHighlight.js';
 import SearchResults from './components/SearchResults.js';
-import TestSearch from './components/TestSearch.js';
 import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
 const axios = require('axios');
 import brown from 'material-ui/colors/green';

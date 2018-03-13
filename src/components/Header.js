@@ -5,7 +5,6 @@ import { withTheme, withStyles } from 'material-ui/styles';
 import compose from 'recompose/compose';
 import { fade } from 'material-ui/styles/colorManipulator';
 import SearchBar from './SearchBar.js';
-import TestSearch from './TestSearch.js';
 
 
 
@@ -31,13 +30,15 @@ class Header extends React.Component {
             <div>
                 <div className={classes.root}>
                     <AppBar className={classes.appBar}>
-                    <Toolbar>                        
+                    <Toolbar>      
+                        <Link to="/" style={{textDecoration: "none", color: "inherit"}}>                  
                         <Typography className={classes.title} variant="title" color="inherit" noWrap>
                             CourseWrap
                         </Typography>
+                        </Link>
                       
                         <div className={classes.grow} />
-                        <TestSearch />
+                        <SearchBar />
                     </Toolbar>
                     </AppBar>
                 </div>
