@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --config ./webpack.config.js --mode development",
-    "push-to-git": "_helpers/push_to_git.sh 'Added searching functionality'"
+    "push-to-git": "_helpers/push_to_git.sh 'Added Header bar styling'"
   },
   "keywords": [],
   "author": "Mike Dane",
@@ -22,8 +22,13 @@
     "webpack-dev-server": "^3.1.0"
   },
   "dependencies": {
+    "autosuggest-highlight": "^3.1.1",
     "axios": "^0.18.0",
+    "material-ui": "^1.0.0-beta.37",
+    "material-ui-icons": "^1.0.0-beta.36",
     "react": "^16.2.0",
+    "react-autosuggest": "^9.3.4",
+    "react-compose": "^2.0.0",
     "react-dom": "^16.2.0",
     "react-router-dom": "^4.2.2"
   }
