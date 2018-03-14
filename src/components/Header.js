@@ -29,7 +29,7 @@ class Header extends React.Component {
         return (
             <div>
                 <div className={classes.root}>
-                    <AppBar className={classes.appBar}>
+                    <AppBar className={classes.appBar} position="static">
                     <Toolbar>      
                         <Link to="/" style={{textDecoration: "none", color: "inherit"}}>                  
                         <Typography className={classes.title} variant="title" color="inherit" noWrap>
@@ -51,7 +51,6 @@ const styles = theme => ({
     root: {
         display: 'flex',
         alignItems: 'stretch',
-        minHeight: '10vh',
         width: '100%',
       },
       grow: {
@@ -62,7 +61,9 @@ const styles = theme => ({
         fontSize: `1.75em`
       },
       appBar: {
-        color: "#fff"
+        color: "#fff",
+        position: 'relative',
+        right: 0
       },
 
   });

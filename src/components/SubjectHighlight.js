@@ -1,9 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 const axios = require('axios');
+import CourseCard from './CourseCard.js';
+import GridList, { GridListTile } from 'material-ui/GridList';
+import Paper from 'material-ui/Paper';
+import Typography from 'material-ui/Typography';
+import green from 'material-ui/colors/green';
+import { fade } from 'material-ui/styles/colorManipulator';
+import { withTheme, withStyles } from 'material-ui/styles';
+import Card, { CardActions, CardContent } from 'material-ui/Card';
+import Chip from 'material-ui/Chip';
 
 
-export default class SubjectHighlight extends React.Component {
+class SubjectHighlight extends React.Component {
     constructor(props){
         super(props);
         console.log("Constructor");
@@ -42,14 +51,9 @@ export default class SubjectHighlight extends React.Component {
     generateCourseItems(courses){
         return this.removeDuplicateCourses(courses).map((course, index) => {
             return (
-                <a href={course.url} key={course.name + index.toString()} target="_blank">
-                    <li style={{display: "inline-block", verticalAlign : "top", margin: "50px", width: "250px", height: "500px", overflow: "scroll", border: "1px solid black"}}>
-                        <img width="250" src={course.image} />
-                        <h2>{course.name}</h2>
-                        <p>{course.instructors}</p>
-                        <p>{course.description}</p>
-                    </li>
-                </a>
+                
+                <CourseCard key={course._id}  margin="10px" course={{name: course.name,url: course.url, image: course.image, description: course.description, school: course.school[0], subject: course.subject[0]}}/>
+
             );
         });
     }
@@ -62,12 +66,57 @@ export default class SubjectHighlight extends React.Component {
         return result;
     }
 
+    generateSchoolUrlLink(schoolUrl){
+        return (
+            <a href={schoolUrl}  target="_blank" style={{textDecoration: 'none', color: 'white'}}>{schoolUrl}</a>
+        );
+    }
+
     render(){
+        const { classes } = this.props;
         return (
             <div>
-                <h2>{this.formatSubjectName(this.props.match.params.subject)}</h2>
-                {this.generateCourseItems(this.state.courses)}
+                <Card className={classes.card}>
+                    <CardContent>
+                    <Typography variant="headline" component="h2" style={{color:'white'}}>
+                        {this.state.courses[0] ? this.state.courses[0].subject[0].name : ""}
+                    </Typography>
+                    <Typography className={classes.title}>
+                    {this.state.courses ? this.state.courses.length + " Courses | " : ""}
+
+                    {this.state.courses[0] ? this.state.courses[0].school[0].name.charAt(0).toUpperCase() + this.state.courses[0].school[0].name.slice(1) : ""}
+                    <a href={this.state.courses[0] ? this.state.courses[0].school[0]._id : ""} target='_blank' style={{textDecoration: 'none', color: 'white'}} >{this.state.courses[0] ?  ' - ' + this.state.courses[0].school[0]._id : ""}</a>
+                    </Typography>
+
+                    </CardContent>
+                </Card>
+                <div style={{display: "flex", WebkitFlexWrap: 'wrap', flexWrap: 'wrap', WebkitJustifyContent: 'center', justifyContent: 'flex-start'}}>
+                    {this.generateCourseItems(this.state.courses)}
+                </div>
             </div>
         );
     }
 }
+
+
+const styles = theme => ({
+
+    card: {
+        minWidth: 275,
+        background: green[400],
+        color: 'white',
+        marginBottom: "1em",
+        height: "5em"
+      },
+      bullet: {
+        display: 'inline-block',
+        margin: '0 2px',
+        transform: 'scale(0.8)',
+      },
+      title: {
+        fontSize: 14,
+       color: 'white'
+      },
+
+});
+export default withStyles(styles)(SubjectHighlight);

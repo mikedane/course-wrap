@@ -42,6 +42,7 @@ export default class SubjectGrid extends React.Component {
                     <li style={{border: "1px solid black", margin: "10px"}} >
                     <img width="250" src={subject.image} />
                     <h3>{subject.name}</h3>
+                    <p>{subject.school[0].name[0].toUpperCase() + subject.school[0].name.substring(1)}</p>
                     </li>
                 </Link>
             );

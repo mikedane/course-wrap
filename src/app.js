@@ -26,18 +26,20 @@ export default class App extends React.Component {
         return (
             <MuiThemeProvider theme={theme}>
                 
-                <div>
+                
                     <Router>
                         <div>
                             <Header />
-                            
-                            <Route exact path="/" component={SubjectGrid} />
-                            <Route exact path="/search-results" component={SearchResults} />
-                            <Route exact path="/data/:school" component={SubjectGrid} />
-                            <Route exact path="/data/:school/:subject" component={SubjectHighlight} />
+                            <div style={{display:'flex', minHeight: '100vh', flexDirection: 'column'}}>
+                                <div style={{flex: '1 0 auto', margin: '0 auto !important', float: 'none !important'}}>
+                                    <Route exact path="/" component={SubjectGrid} />
+                                    <Route exact path="/search-results" component={SearchResults} />
+                                    <Route exact path="/data/:school" component={SubjectGrid} />
+                                    <Route exact path="/data/:school/:subject" component={SubjectHighlight} />
+                                </div>
+                            </div>
                         </div>
                     </Router>
-                </div>   
             </MuiThemeProvider>
 
                
