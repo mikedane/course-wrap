@@ -82,7 +82,7 @@ class SubjectHighlight extends React.Component {
                         {this.state.courses[0] ? this.state.courses[0].subject[0].name : ""}
                     </Typography>
                     <Typography className={classes.title}>
-                    {this.state.courses ? this.state.courses.length + " Courses | " : ""}
+                    {this.state.courses ? this.state.courses.length + (this.state.courses.length > 1 ? " Courses" : " Course") + " | " : ""}
 
                     {this.state.courses[0] ? this.state.courses[0].school[0].name.charAt(0).toUpperCase() + this.state.courses[0].school[0].name.slice(1) : ""}
                     <a href={this.state.courses[0] ? this.state.courses[0].school[0]._id : ""} target='_blank' style={{textDecoration: 'none', color: 'white'}} >{this.state.courses[0] ?  ' - ' + this.state.courses[0].school[0]._id : ""}</a>
@@ -90,7 +90,7 @@ class SubjectHighlight extends React.Component {
 
                     </CardContent>
                 </Card>
-                <div style={{display: "flex", WebkitFlexWrap: 'wrap', flexWrap: 'wrap', WebkitJustifyContent: 'center', justifyContent: 'flex-start'}}>
+                <div style={{display: "flex", WebkitFlexWrap: 'wrap', flexWrap: 'wrap', WebkitJustifyContent: 'center', justifyContent: 'flex-start', paddingLeft: '24px'}}>
                     {this.generateCourseItems(this.state.courses)}
                 </div>
             </div>
@@ -106,7 +106,8 @@ const styles = theme => ({
         background: green[400],
         color: 'white',
         marginBottom: "1em",
-        height: "5em"
+        height: "5em",
+        paddingLeft: '24px'
       },
       bullet: {
         display: 'inline-block',
@@ -116,6 +117,7 @@ const styles = theme => ({
       title: {
         fontSize: 14,
        color: 'white'
+   
       },
 
 });

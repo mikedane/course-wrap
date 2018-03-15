@@ -2,6 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { HashRouter as Router, Route, Link, Redirect } from "react-router-dom";
 const axios = require('axios');
+import CourseCard from './CourseCard.js';
+
 
 export default class SearchResults extends React.Component {
     constructor(props){
@@ -61,24 +63,18 @@ export default class SearchResults extends React.Component {
     generateCourseItems(courses){
         return this.removeDuplicateCourses(courses).map((course, index) => {
             return (
-                <a href={course.url} key={course.name + index.toString()} target="_blank">
-                    <li style={{display: "inline-block", verticalAlign : "top", margin: "50px", width: "250px", height: "500px", overflow: "scroll", border: "1px solid black"}}>
-                        <img width="250" src={course.image} />
-                        <h2>{course.name}</h2>
-                        <p>{course.instructors}</p>
-                        <p>{course.description}</p>
-                    </li>
-                </a>
+                <CourseCard key={course._id}  margin="10px" course={{name: course.name,url: course.url, image: course.image, description: course.description, school: course.school[0], subject: course.subject[0]}}/>
+
             );
         });
     }
 
     render(){
         return (
-            <div>
+            <div style={{display: "flex", WebkitFlexWrap: 'wrap', flexWrap: 'wrap', WebkitJustifyContent: 'center', justifyContent: 'flex-start', paddingLeft: '24px'}}>
+            {this.generateCourseItems(this.state.searchResults)}
+        </div>
 
-               {this.generateCourseItems(this.state.searchResults)}
-            </div>
         );
     }
 

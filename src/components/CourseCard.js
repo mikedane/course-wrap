@@ -58,7 +58,7 @@ class CourseCard extends React.Component {
             <Typography color="primary" component="p" variant="caption" style={{fontSize: "0.9em", }}>
                 {this.state.modalObject.school != null ? this.state.modalObject.school.name.charAt(0).toUpperCase() + this.state.modalObject.school.name.slice(1) : ""} - {this.state.modalObject.subject != null ?this.state.modalObject.subject.name : ""}
                 </Typography>
-                <br />
+               
             </DialogTitle>
 
 
@@ -115,7 +115,10 @@ class CourseCard extends React.Component {
 
 
             <Typography component="p" variant="caption" style={{fontSize: "0.9em", marginTop: "10px"}}>
-              {course.school.name.charAt(0).toUpperCase() + course.school.name.slice(1)} - {course.subject.name}
+                <Truncate lines={1}  >
+                {course.school.name.charAt(0).toUpperCase() + course.school.name.slice(1)} - {course.subject.name}
+
+                </Truncate>
             </Typography>
           </CardContent>
           <CardActions>

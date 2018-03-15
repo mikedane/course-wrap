@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --config ./webpack.config.js --mode development",
-    "push-to-git": "_helpers/push_to_git.sh 'Styled Course viewer'"
+    "push-to-git": "_helpers/push_to_git.sh 'Added Subject Styling'"
   },
   "keywords": [],
   "author": "Mike Dane",
@@ -16,7 +16,9 @@
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-2": "^6.24.1",
+    "file-loader": "^1.1.11",
     "react-hot-loader": "^4.0.0",
+    "url-loader": "^1.0.1",
     "webpack": "^4.1.0",
     "webpack-cli": "^2.0.10",
     "webpack-dev-server": "^3.1.0"
