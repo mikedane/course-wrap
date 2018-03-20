@@ -1,71 +1,70 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { HashRouter as Router, Route, Link, Redirect } from "react-router-dom";
-import { withTheme, withStyles } from 'material-ui/styles';
-import compose from 'recompose/compose';
-import { fade } from 'material-ui/styles/colorManipulator';
+import { Route, Link, Redirect } from "react-router-dom";
 import SearchBar from './SearchBar.js';
 
-
-
+// Material Ui
 import AppBar from 'material-ui/AppBar';
 import Toolbar from 'material-ui/Toolbar';
 import Typography from 'material-ui/Typography';
-import Button from 'material-ui/Button';
 import IconButton from 'material-ui/IconButton';
-import MenuIcon from 'material-ui-icons/Menu';
+import Hidden from 'material-ui/Hidden';
+import { fade } from 'material-ui/styles/colorManipulator';
+import { withStyles } from 'material-ui/styles';
+import Paper from 'material-ui/Paper';
 
 
 
 
 class Header extends React.Component {
-
     
-
     render(){
-
         const { classes } = this.props;
-
+        console.log(this.props);
         return (
-            <div>
-                <div className={classes.root}>
-                    <AppBar className={classes.appBar} position="static">
-                    <Toolbar>      
-                        <Link to="/" style={{textDecoration: "none", color: "inherit"}}>                  
-                        <Typography className={classes.title} variant="title" color="inherit" noWrap>
-                            CourseWrap
-                        </Typography>
-                        </Link>
-                      
-                        <div className={classes.grow} />
-                        <SearchBar />
-                    </Toolbar>
-                    </AppBar>
+            <Paper>
+                <div className={classes.headerWrap}>
+                    <div className={classes.header}>
+                            <Link to="/" className={classes.link}>
+                                <Typography variant="title" color="inherit" className={classes.title}>
+                                        CourseWrap
+                                </Typography>
+                            </Link>
+                            <Hidden only="xs">
+                                <Route path="/" component={SearchBar} />
+                            </Hidden>
+                    </div>
                 </div>
-            </div>
+            </Paper>
         );
     }
 }
 
 const styles = theme => ({
-    root: {
+
+    title: {
+        fontSize: '2em',
+    },
+    link: {
+        textDecoration: 'none',
+        color: 'white',
+    },
+    headerWrap: {
+        display: 'flex', 
+        justifyContent: 'center',
+        background: theme.palette.primary.main, 
+        paddingTop: '1em',
+        paddingBottom: '1em',
+    },
+    header: {
         display: 'flex',
-        alignItems: 'stretch',
-        width: '100%',
-      },
-      grow: {
-        flex: '1 1 auto',
-      },
-      title: {
-        marginLeft: 24,
-        fontSize: `1.75em`
-      },
-      appBar: {
-        color: "#fff",
-        position: 'relative',
-        right: 0
-      },
+        flexWrap: 'wrap',
+        justifyContent: 'space-between', 
+        width: '1400px', 
+        marginLeft: '2%',
+        marginRight: '2%',
+        color: 'white',
+    },
+});
 
-  });
-
-export default compose(withStyles(styles))(Header);
+export default withStyles(styles)(Header);

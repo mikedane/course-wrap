@@ -1,11 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Toolbar from 'material-ui/Toolbar';
+
+// Material Ui
 import Typography from 'material-ui/Typography';
-import { withTheme, withStyles } from 'material-ui/styles';
+import { withStyles } from 'material-ui/styles';
 import grey from 'material-ui/colors/grey';
 import Button from 'material-ui/Button';
-import { Link } from 'material-ui-icons';
+import Paper from 'material-ui/Paper';
 
 
 class Footer extends React.Component{
@@ -13,74 +14,87 @@ class Footer extends React.Component{
     render(){
         const { classes } = this.props;
         return(
-                <div className={classes.footerFlex}>
-                    <div className={classes.footerFlexItem}>
-                        <Typography variant="headline" color="inherit" className={classes.flex} style={{fontSize: '27px'}}>
-                            CourseWrap
-                        </Typography>
-                        <br />
-                        <Typography variant="body1" color="inherit" className={classes.flex} style={{fontSize: "16px"}}>
-                            CourseWrap is the ultimate resource for finding free and high quality OpenCourseWare content
-                            from the world's best companies and universities!
-                        </Typography>
-                        <br />
-                        <a href="https://en.wikipedia.org/wiki/OpenCourseWare" target="_blank" style={{textDecoration: 'none'}}>
-                        <Button variant="raised" color="primary" style={{color: "white"}}>
+            <Paper>
+                <div className={classes.footerWrap}>
+                    <div className={classes.footer}>
+                        <div className={classes.footerItem}>
+                            <Typography variant="headline" color="inherit" className={classes.footerHeading}>
+                                CourseWrap
+                            </Typography>
+                            <br />
+                            <Typography variant="body1" color="inherit" className={classes.footerText}>
+                                CourseWrap is the ultimate resource for finding free and high quality OpenCourseWare content
+                                from the world's best companies and universities!
+                            </Typography>
+                            <br />
+                            <a href="https://en.wikipedia.org/wiki/OpenCourseWare" target="_blank" className={classes.link}>
+                                <Button variant="raised" color="primary" className={classes.button}>
+                                    Learn More
+                                </Button>
+                            </a>
+                        </div>
+                        <div className={classes.footerItem}>
+                            <Typography variant="headline" color="inherit"  className={classes.footerHeading}>
+                                Popular Links
+                            </Typography>
+                            <br />
+                            <a href="https://ocw.mit.edu/index.htm" target="_blank" className={classes.link}>
+                                <Typography variant="body1" color="inherit" className={classes.footerText} >
+                                
+                                    MIT OpenCourseWare
+                                </Typography>
+                            </a>
+                            <a href="https://oyc.yale.edu/" target="_blank" className={classes.link}>
+                                <Typography variant="body1" color="inherit" className={classes.footerText}>
+                                    Open Yale Courses
+                                </Typography>
+                            </a>
+                            <a href="https://www.edx.org/" target="_blank" className={classes.link}>
 
-                            Learn More
-                        </Button>
-                        </a>
-                    </div>
-                    <div className={classes.footerFlexItem}>
-                        <Typography variant="headline" color="inherit" className={classes.flex} style={{fontSize: '27px'}}>
-                            Popular Links
-                        </Typography>
-                        <br />
-                        <a href="https://ocw.mit.edu/index.htm" target="_blank" style={{textDecoration: 'none', color: "white"}}>
-                            <Typography variant="body1" color="inherit" className={classes.flex} style={{fontSize: "16px"}}>
-                            <Link style={{fontSize: '20px'}}/> &nbsp;
-                                MIT OpenCourseWare
-                            </Typography>
-                        </a>
-                        <a href="https://oyc.yale.edu/" target="_blank" style={{textDecoration: 'none', color: "white"}}>
-                            <Typography variant="body1" color="inherit" className={classes.flex} style={{fontSize: "16px"}}>
-                            <Link style={{fontSize: '20px'}}/> &nbsp;
-                                Open Yale Courses
-                            </Typography>
-                        </a>
-                        <a href="https://www.edx.org/" target="_blank" style={{textDecoration: 'none', color: "white"}}>
-
-                            <Typography variant="body1" color="inherit" className={classes.flex} style={{fontSize: "16px"}}>
-                                <Link style={{fontSize: '20px'}}/> &nbsp;
-                                edX Courses
-                            </Typography>
-                        </a>
-                        <br />
+                                <Typography variant="body1" color="inherit" className={classes.footerText} >
+                                    edX Courses
+                                </Typography>
+                            </a>
+                        </div>
                     </div>
                 </div>
+            </Paper>
         );
     }
 }
 
-const styles = {
-
-    menuButton: {
-      marginLeft: -12,
-      marginRight: 20,
+const styles = theme => ({
+    footerWrap: {
+        display: 'flex', 
+        justifyContent: 'center',
+        background: grey[600], 
+        paddingTop: '1em',
+        paddingBottom: '1em',
     },
-    footerFlex: {
+    footer: {
         display: 'flex',
-        color: "white",
-        paddingTop: '25px',
-        paddingBottom: '25px',
-        paddingLeft: '50px',
-        paddingRight: '50px',
-        justifyContent: "space-between",
-        backgroundColor: grey[600],
-        flexWrap: 'wrap'
+        flexWrap: 'wrap',
+        justifyContent: 'space-between', 
+        width: '1400px', 
+        marginLeft: '2%',
+        marginRight: '2%',
+        color: 'white',
     },
-    footerFlexItem: {
-        maxWidth: "400px",
-    }
-  };
+    footerItem: {
+        maxWidth: '400px',
+    },
+    footerText: {
+        fontSize: '1em',
+    },
+    footerHeading: {
+        fontSize: '1.7em',
+    },
+    link: {
+        textDecoration: 'none',
+        color: 'white'
+    },
+    button: {
+        color: 'white',
+    },
+});
   export default withStyles(styles)(Footer);

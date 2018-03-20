@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --config ./webpack.config.js --mode development",
-    "push-to-git": "_helpers/push_to_git.sh 'Added Footer'"
+    "push-to-git": "_helpers/push_to_git.sh 'Optimized UI for mobile'"
   },
   "keywords": [],
   "author": "Mike Dane",
@@ -28,10 +28,12 @@
     "axios": "^0.18.0",
     "material-ui": "^1.0.0-beta.37",
     "material-ui-icons": "^1.0.0-beta.36",
+    "query-string": "^5.1.1",
     "react": "^16.2.0",
     "react-autosuggest": "^9.3.4",
     "react-compose": "^2.0.0",
     "react-dom": "^16.2.0",
+    "react-lazyload": "^2.3.0",
     "react-router-dom": "^4.2.2",
     "react-truncate": "^2.3.0"
   }

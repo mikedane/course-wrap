@@ -3,68 +3,48 @@ import ReactDOM from 'react-dom';
 import { HashRouter as Router, Route, Link, Redirect } from "react-router-dom";
 const axios = require('axios');
 import CourseCard from './CourseCard.js';
-
+const queryString = require('query-string');
+const Helpers = require("../helpers.js");
 
 export default class SearchResults extends React.Component {
     constructor(props){
         super(props);
 
         this.state = {
-            searchQuery: this.getParameterByName("searchQuery").split("+").join(" "),
+            searchQuery: Helpers.getURLParamByName("query", this.props.location.search),
             searchResults: [],
             
         }
     }
 
     componentDidMount(){
-        console.log("component did mount")
         this.getSearchResults(this.state.searchQuery);
     }
 
     componentDidUpdate(){
-        if(this.getParameterByName("searchQuery").split("%20").join(" ") != this.state.searchQuery){
+        let currentQuery = Helpers.getURLParamByName("query", this.props.location.search);
+        if(currentQuery != this.state.searchQuery){
             this.setState({
-                searchQuery: this.getParameterByName("searchQuery").split("+").join(" ")
+                searchQuery: currentQuery
             });
-            this.getSearchResults(this.getParameterByName("searchQuery").split("+").join(" "));
+            this.getSearchResults(currentQuery);
         }
     }
 
-
-    getSearchResults(searchQuery){
-        axios.get('https://us-central1-test-api-197100.cloudfunctions.net/ocwScraper/search?searchQuery=' + searchQuery + "&limit=20")
-        .then((response) => { 
-            this.setState({
-                searchResults: response.data.results
-            });
-        });
-    }
-    
-
-
-    removeDuplicateCourses(courses){
-        let result = [];
-        courses.forEach((course) => {
-            if(result.length > 0){
-                let found = result.find(function(element) {
-                    return element.name == course.name || element.url == course.url;
-                  });
-                if(found === undefined){
-                    result.push(course);
-                }
-            } else {
-                result.push(course);
-            }
+    getSearchResults(query){
+        Helpers.httpGet(Helpers.apiRootUrl + "search?query=" + query + "&limit=30", result => {
             
-        });            
-        return result;
+            this.setState({
+                searchResults: result.courses
+            });
+            
+        });
     }
 
     generateCourseItems(courses){
-        return this.removeDuplicateCourses(courses).map((course, index) => {
+        return Helpers.removeDuplicateCourses(courses).map((course, index) => {
             return (
-                <CourseCard key={course._id}  margin="10px" course={{name: course.name,url: course.url, image: course.image, description: course.description, school: course.school[0], subject: course.subject[0]}}/>
-
+                <CourseCard key={course._id}  margin="10px" course={course}/>
             );
         });
     }
@@ -79,12 +59,6 @@ export default class SearchResults extends React.Component {
     }
 
     getParameterByName(name, url) {
-        if (!url) url = window.location.href;
-        name = name.replace(/[\[\]]/g, "\\$&");
-        var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
-            results = regex.exec(url);
-        if (!results) return null;
-        if (!results[2]) return '';
-        return decodeURIComponent(results[2].replace(/\+/g, " "));
+
     }
 }
