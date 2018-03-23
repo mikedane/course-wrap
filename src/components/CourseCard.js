@@ -107,7 +107,7 @@ class CourseCard extends React.Component {
                         <LazyLoad once height={120}>
                             <CardMedia onClick={() => this.handleClickOpen(course)}
                                 className={classes.media}
-                                image={course.image}
+                                image={course.image ? course.image : require(".././static/images/" + course.school.name.toLowerCase().split(" ").join("-") + ".jpg")}
                                 title={course.name}
                             />
                         </LazyLoad>
