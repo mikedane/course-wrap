@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --config ./webpack.config.js --mode development",
-    "push-to-git": "_helpers/push_to_git.sh 'Added Carnegie Mellon Courses'"
+    "push-to-git": "_helpers/push_to_git.sh 'Added Michigan Courses'"
   },
   "keywords": [],
   "author": "Mike Dane",

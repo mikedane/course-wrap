@@ -13,9 +13,14 @@ class SubjectGrid extends React.Component {
     generateSubjectItems(school){
         const { classes } = this.props;
         return school.subjects.map((subject, index) => {
-            return (
+            if(subject.courseCount > 0){
+                return (
                     <SubjectCard key={subject._id}  margin="10px" subject={subject} school={school}/>
-            );
+                );
+            } else {
+                return;
+            }
+
         });
     }
 

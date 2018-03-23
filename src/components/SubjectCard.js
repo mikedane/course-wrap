@@ -49,7 +49,7 @@ class SubjectCard extends React.Component {
 
                         <CardMedia
                             className={classes.media}
-                            image={subject.image}
+                            image={subject.image ? subject.image : require(".././static/images/" + school.name.toLowerCase().split(" ").join("-") + ".jpg")}
                             title={subject.name}
                         />
                     </Link>
