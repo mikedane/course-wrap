@@ -65,14 +65,14 @@ class CourseCard extends React.Component {
                             {this.state.modalObject.school != null ? this.state.modalObject.school.name.charAt(0).toUpperCase() + this.state.modalObject.school.name.slice(1) : ""} - 
                             <Link to={"/subject?id=" + (this.state.modalObject.subject ? this.state.modalObject.subject._id : "")}
                                   className={classes.link}>
-                                    {this.state.modalObject.subject != null ? this.state.modalObject.subject.name : ""}
+                                    {this.state.modalObject.subject != null ? " " + this.state.modalObject.subject.name : ""}
                             </Link>
                         </Typography>
                     </DialogTitle>
                     <DialogContent>
                         <span className={classes.modalImage}>
                             <LazyLoad once height={120} >
-                                <img width="200" src={this.state.modalObject.image} />
+                                <img width="200" src={this.state.modalObject.image ? this.state.modalObject.image : require(".././static/images/" + this.state.modalObject.school.name.toLowerCase().split(" ").join("-") + ".jpg")} />
                             </LazyLoad>
                         </span>    
                         <DialogContentText id="alert-dialog-slide-description">

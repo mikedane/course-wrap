@@ -11,9 +11,13 @@ class CourseGrid extends React.Component {
 
     generateCourseItems(courses){
         return Helpers.removeDuplicateCourses(courses).map((course, index) => {
-            return (
-                <CourseCard key={course._id}  margin="10px" course={course} />
-            );
+            if(course.name){
+                return (
+                    <CourseCard key={course._id}  margin="10px" course={course} />
+                );
+            } else {
+                return;
+            }
         });
     }
 
