@@ -46,7 +46,6 @@ class Subject extends React.Component {
 
     render(){
         const { classes } = this.props;
-        console.log(this.state);
         return (
             <div className={classes.subjectWrapper}>
                 {this.state.subject ? <SubjectSubheader subject={this.state.subject} />: <div></div>}

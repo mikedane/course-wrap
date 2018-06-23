@@ -5,7 +5,7 @@ import App from './app.js'
 const title = 'Course Wrap';
 
 ReactDOM.render(
-    <App name="Dog"/>,
+    <App/>,
     document.getElementById('app')
   );
 

@@ -17,14 +17,15 @@ import Hidden from 'material-ui/Hidden';
 const Helpers = require("../helpers.js");
 
 function generateQueryUrl(query){
- 
-    return '/search?query=' + query.trim().replace(/&/g, "").replace(/\+{2,}/g, "").replace(/\s{2,}/g, " ").replace(/ /g, "+");
+    if(query){
+      return '/search?query=' + query.trim().replace(/&/g, "").replace(/\+{2,}/g, "").replace(/\s{2,}/g, " ").replace(/ /g, "+");
+    }
+    return '/';
 }
 
 function renderSuggestion(suggestion, { query, isHighlighted }) {
   const matches = match(suggestion.name, query);
   const parts = parse(suggestion.name, matches);
-
   return (
     <Link to={generateQueryUrl(suggestion.name)} style={{textDecoration: "none"}}>
         <MenuItem selected={isHighlighted} component="div">
@@ -90,6 +91,14 @@ class SearchBar extends React.Component {
 
     handleSuggestionsFetchRequested = ({ value }) => {
         Helpers.httpGet(Helpers.apiRootUrl + "search?query=" + value + "&" + "limit=5", result => {
+            
+            let dog = Helpers.removeDuplicateCourses(result.courses).map((course) => {
+              if(course.name) {
+                console.log("Got course with name: " + course.name);
+                return course;
+              }
+            });
+            console.log(dog);
             if(result.courses.length > 0){
                 this.setState({
                     suggestions: Helpers.removeDuplicateCourses(result.courses)

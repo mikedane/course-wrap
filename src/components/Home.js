@@ -9,6 +9,8 @@ import ExpansionPanel, {
     ExpansionPanelDetails,
     ExpansionPanelSummary,
   } from 'material-ui/ExpansionPanel';
+import Card from 'material-ui/Card';
+
 import ExpandMoreIcon from 'material-ui-icons/ExpandMore';
 import LazyLoad from 'react-lazyload';
 import { CircularProgress } from 'material-ui/Progress';
@@ -32,8 +34,12 @@ class Home extends React.Component {
     }
 
     componentDidMount(){
-        console.log(this.state);
         Helpers.httpGet(Helpers.apiRootUrl + "schools?getSubjects=true", result => {
+            result.schools.sort((a, b) => {
+                if(a > b) return 1;
+                if(a < b) return -1;
+                return 0;
+            });
             this.setState({
                 schools: result.schools,
                 expanded: null,
@@ -61,6 +67,7 @@ class Home extends React.Component {
                 <div className={classes.spinnerContainer}>
                     {schools.length == 0 ? <CircularProgress /> : null}
                 </div>
+           
                 {schools.map(school => (
                     <div key={school._id} className={classes.panel}>
                         <ExpansionPanel expanded={expanded === school._id} onChange={this.handleChange(school._id)} >
@@ -100,6 +107,7 @@ const styles = theme => ({
         justifyContent: 'center',
         marginTop: '25px'
     },
+
     panelsWrapper: {
         width: '1200px',
     },

@@ -20,7 +20,6 @@ class Header extends React.Component {
     
     render(){
         const { classes } = this.props;
-        console.log(this.props);
         return (
             <Paper>
                 <div className={classes.headerWrap}>
